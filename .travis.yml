@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+install:
+  - pip install codecov
+
+script:
+  - coverage run haddock_param_summary.py test/input/prot-prot-em.json
+  - coverage run -a haddock_param_extract_pdb.py test/input/prot-prot-em.json
+
+after_success:
+  - codecov

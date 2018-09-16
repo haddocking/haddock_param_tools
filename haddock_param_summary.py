@@ -60,7 +60,7 @@ def print_summary(jsonfh):
     try:
         params = json.load(jsonfh)
         # Number of models
-        sys.stdout.write(f'it0\t{params['structures_0']}\nit1\t{params['structures_1']}\nitw\t{params['waterrefine']}\n')
+        sys.stdout.write(f"it0\t{params['structures_0']}\nit1\t{params['structures_1']}\nitw\t{params['waterrefine']}\n")
         # Number of partners + type
         for i, p in params['partners'].items():
             sys.stdout.write('Partner{}: {}\n'.format(i, p['moleculetype']))
