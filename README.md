@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/mtrellet/haddock_param_scripts.svg?branch=master)](https://travis-ci.com/mtrellet/haddock_param_scripts)
+[![codecov](https://codecov.io/gh/mtrellet/haddock_param_scripts/branch/master/graph/badge.svg)](https://codecov.io/gh/mtrellet/haddock_param_scripts)
+
 # haddock_param_scripts
 Python scripts to manipulate HADDOCK2.4 parameter files (*.json)
 
