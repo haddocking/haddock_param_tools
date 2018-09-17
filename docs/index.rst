@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to HADDOCK2.4 param file scripts's documentation!
+Welcome to HADDOCK2.4 param file tools's documentation!
 =========================================================
 This document aims to provide some usage and info about the
 different scripts provided by the CSB team to manipulate or

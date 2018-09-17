@@ -19,7 +19,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = u'HADDOCK2.4 param file scripts'
+project = u'HADDOCK2.4 param file tools'
 copyright = u'2018, Mikael Trellet'
 author = u'Mikael Trellet'
 
@@ -106,7 +106,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'HADDOCK24paramfilescriptsdoc'
+htmlhelp_basename = 'HADDOCK24paramfiletoolsdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -133,7 +133,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'HADDOCK24paramfilescripts.tex', u'HADDOCK2.4 param file scripts Documentation',
+    (master_doc, 'HADDOCK24paramfiletools.tex', u'HADDOCK2.4 param file tools Documentation',
      u'Mikael Trellet', 'manual'),
 ]
 
@@ -143,7 +143,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'haddock24paramfilescripts', u'HADDOCK2.4 param file scripts Documentation',
+    (master_doc, 'haddock24paramfiletools', u'HADDOCK2.4 param file tools Documentation',
      [author], 1)
 ]
 
@@ -154,8 +154,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'HADDOCK24paramfilescripts', u'HADDOCK2.4 param file scripts Documentation',
-     author, 'HADDOCK24paramfilescripts', 'One line description of project.',
+    (master_doc, 'HADDOCK24paramfiletools', u'HADDOCK2.4 param file tools Documentation',
+     author, 'HADDOCK24paramfilestools', 'One line description of project.',
      'Miscellaneous'),
 ]
 
