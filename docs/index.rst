@@ -15,7 +15,11 @@ runs performed with the portal and are named by default `job_params.json`.
    :maxdepth: 2
    :caption: Contents:
 
+.. automodule:: haddock_param_summary
+   :members:
 
+.. automodule:: haddock_param_extract_pdb
+   :members:
 
 Indices and tables
 ==================

@@ -30,6 +30,8 @@ USAGE = __doc__.format(__author__, __email__)
 def check_input(args):
     """
     Checks whether to read from stdin/file and validates user input/options.
+    :param: args: command-line arguments
+    :return: jsonfh: json paramter file as file-object
     """
 
     if not len(args):
@@ -53,6 +55,10 @@ def check_input(args):
     return jsonfh
 
 def extract_pdbs(jsonfh):
+    """
+    Write PDB files found in HADDOCK parameter file
+    :param: jsonfh: json paramter file as file-object
+    """
     try:
         params = json.load(jsonfh)
         for p, pdb in params['partners'].items():

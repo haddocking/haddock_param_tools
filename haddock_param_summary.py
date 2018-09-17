@@ -34,6 +34,8 @@ USAGE = __doc__.format(__author__, __email__)
 def check_input(args):
     """
     Checks whether to read from stdin/file and validates user input/options.
+    :param: args: command-line arguments
+    :return: jsonfh: json paramter file as file-object
     """
 
     if not len(args):
