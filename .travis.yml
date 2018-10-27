@@ -3,13 +3,18 @@ language: python
 python:
   - "3.6"
 
+cache:
+  pip: true
+
 install:
   - pip install codecov
+  - pip install pycodestyle
 
 script:
   - coverage run haddock_param_summary.py test/input/prot-prot-em.json
   - coverage run -a haddock_param_extract_pdb.py test/input/prot-prot-em.json
-  - nosetest --with-coverage
+  - nosetests --with-coverage
+  - pycodestyle --ignore=E402,E501 .
 
 after_success:
   - codecov

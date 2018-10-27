@@ -3,9 +3,9 @@
 """
 Get a quick summary of the job parameter file (JSON)
 
-usage: 
+usage:
     $> python haddock_param_summary.py <json file>
-example: 
+example:
     $> python haddock_param_summary.py job_params.json
     it0 1000
     it1 20
@@ -47,7 +47,7 @@ def check_input(args):
             sys.exit(1)
     elif len(args) == 1:
         if not os.path.isfile(args[0]):
-            if args[0] not in ("-h", "--help"): 
+            if args[0] not in ("-h", "--help"):
                 sys.stderr.write('File not found: ' + args[0] + '\n')
             sys.stderr.write(USAGE)
             sys.exit(1)
@@ -57,6 +57,7 @@ def check_input(args):
         sys.exit(1)
 
     return jsonfh
+
 
 def print_summary(jsonfh):
     try:
@@ -94,4 +95,3 @@ if __name__ == '__main__':
     # We can close it even if it is sys.stdin
     jsonfh.close()
     sys.exit(0)
-

@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
 """
-Extract the PDB input files from a job parameter file (JSON) 
+Extract the PDB input files from a job parameter file (JSON)
 in the current directory
 
-usage: 
+usage:
     $> python haddock_param_summary.py <json file>
-example: 
+example:
     $> python haddock_param_summary.py job_params.json
     partner1.pdb created
     partner2.pdb created
@@ -43,7 +43,7 @@ def check_input(args):
             sys.exit(1)
     elif len(args) == 1:
         if not os.path.isfile(args[0]):
-            if args[0] not in ("-h", "--help"): 
+            if args[0] not in ("-h", "--help"):
                 sys.stderr.write('File not found: ' + args[0] + '\n')
             sys.stderr.write(USAGE)
             sys.exit(1)
@@ -53,6 +53,7 @@ def check_input(args):
         sys.exit(1)
 
     return jsonfh
+
 
 def extract_pdbs(jsonfh):
     """
@@ -69,6 +70,7 @@ def extract_pdbs(jsonfh):
     except Exception as e:
         sys.stderr.write(f'Error: {e}\n')
         raise
+
 
 if __name__ == '__main__':
     # Check Input
