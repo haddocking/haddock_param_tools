@@ -11,8 +11,8 @@ install:
   - pip install pycodestyle
 
 script:
-  - coverage run haddock_param_summary.py test/input/prot-prot-em.json
-  - coverage run -a haddock_param_extract_pdb.py test/input/prot-prot-em.json
+  - coverage run scripts/haddock_param_summary.py test/input/prot-prot-em.json
+  - coverage run -a scripts/haddock_param_extract_pdb.py test/input/prot-prot-em.json
   - nosetests --with-coverage
   - pycodestyle --ignore=E402,E501 .
 
