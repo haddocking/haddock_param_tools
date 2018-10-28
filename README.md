@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/mtrellet/haddock_param_tools/branch/master/graph/badge.svg)](https://codecov.io/gh/mtrellet/haddock_param_tools)
 [![Documentation Status](https://readthedocs.org/projects/haddock-param-tools/badge/?version=latest)](https://haddock-param-tools.readthedocs.io/en/latest/?badge=latest)
 
-# haddock_param_scripts
+# haddock_param_tools
 Python scripts and API to manipulate HADDOCK2.4 parameter files (*.json).
 
 This repository is split between scripts that can be used at the command-line level
@@ -53,13 +53,19 @@ See more information here: https://haddock-param-tools.readthedocs.io/
 
 ## Installation
 
-Quick installation:
+- Build
 
 ```bash
 $> python setup.py build
-...
+```
+- Optional - Test
+```bash
+$> python setup.py test
+```
+
+- Install
+```bash
 $> python setup.py install
-...
 ```
 
 ## Usage

@@ -13,6 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/mtrellet/haddock_param_tools",
     packages=setuptools.find_packages(),
+    test_suite='nose.collector',
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache License",
