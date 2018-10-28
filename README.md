@@ -3,9 +3,21 @@
 [![Documentation Status](https://readthedocs.org/projects/haddock-param-tools/badge/?version=latest)](https://haddock-param-tools.readthedocs.io/en/latest/?badge=latest)
 
 # haddock_param_scripts
-Python scripts to manipulate HADDOCK2.4 parameter files (*.json)
+Python scripts and API to manipulate HADDOCK2.4 parameter files (*.json).
 
-Tested with __Python3.6__
+This repository is split between scripts that can be used at the command-line level
+and a API allowing to use those functions in any python script.
+
+Tested with:
+
+    - Python3.6 
+    - Python3.7
+
+# Scripts
+
+The scripts contained in the [scripts](scripts/) directory can be used as commands in any terminal.
+They accept both file path or stream from the standard output as input. This allows for piping them
+one after each other in order to perform different operations at once.
 
 ## Summary
 
@@ -27,3 +39,41 @@ $> python haddock_param_extract_pdb.py job_params.json
 partner1.pdb created
 partner2.pdb created
 ```
+
+# API
+
+This [API](param_to_json) allows access to most operations on a parameter file at the python level. 
+It is based on a HADDOCKParam object that encapsulates the JSON dictionary and exposes different 
+information and operations to edit/change the parameters. Any change can be dumped to a new parameter 
+file using the `dumper` function.
+
+## Documentation
+
+See more information here: https://haddock-param-tools.readthedocs.io/
+
+## Installation
+
+Quick installation:
+
+```bash
+$> python setup.py build
+...
+$> python setup.py install
+...
+```
+
+## Usage
+
+### Load a parameter file
+
+```python
+from param_to_json import HADDOCKParam
+
+params = HADDOCKParam()
+params.load('test/input/prot-prot-em.json')
+print(params.nb_partners)
+```
+
+# License
+
+Apache (see [LICENSE](LICENSE))
