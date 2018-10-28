@@ -20,6 +20,14 @@ __version__ = '0.1'
 logging.basicConfig()
 
 
+class HADDOCKParamError(Exception):
+    """Exception class related to any error within the HADDOCKParam class"""
+
+    def __init__(self, message):
+        # Call base class constructor
+        Exception.__init__(self, message)
+
+
 class HADDOCKParamFormatError(Exception):
     """Exception class related to any format error within the HADDOCKParam
     class"""
@@ -81,21 +89,45 @@ class HADDOCKParam(object):
     def __init__(self, verbose=True):
         self.verbose = verbose
         self.path = ""
-        self.nb_partners = 0
         self.params = {}
         self.valid = False
+        self.nb_partners = 0
+
+    @property
+    def nb_partners(self):
+        return self.__nb_partners
+
+    @nb_partners.setter
+    def nb_partners(self, val):
+        if val < 0:
+            self.__nb_partners = 0
+            logging.warning("Number of partners cannot be less than 0")
+        elif val > 20:
+            self.__nb_partners = 20
+            logging.warning("Currently HADDOCK supports up to 20 molecules")
+        else:
+            self.__nb_partners = val
+
+    @nb_partners.getter
+    def nb_partners(self):
+        if not self.params:
+            raise HADDOCKParamError("No parameters found, please load a file.")
+        elif "partners" not in self.params:
+            raise HADDOCKParamFormatError("No partners found in parameter set, wrong format.")
+        else:
+            return len(self.params["partners"])
 
     def _load(self, jsonfh, skip_validation):
         try:
             self.params = json.load(jsonfh)
             if not skip_validation:
-                self.valid = self._validate()
+                self.valid = self.validate()
         except JSONDecodeError as e:
             raise HADDOCKParamFormatError(f"Error while loading JSON file: {e}")
         except HADDOCKParamFormatError:
             raise
 
-    def _validate(self):
+    def validate(self):
         """
         Validation of parameter file format and keys
 
@@ -130,7 +162,7 @@ class HADDOCKParam(object):
         :type skip_validation: bool
         """
         if isinstance(input, str):
-            jsonfh = open(input, 'rU')
-            self._load(jsonfh, skip_validation)
+            with open(input, 'r') as jsonfh:
+                self._load(jsonfh, skip_validation)
         else:
             self._load(input, skip_validation)
