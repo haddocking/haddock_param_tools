@@ -1,21 +1,19 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 Get a quick summary of the job parameter file (JSON)
 
 usage:
-    $> python haddock_param_summary.py <json file>
+    | $> python haddock_param_summary.py <json file>
 example:
-    $> python haddock_param_summary.py job_params.json
-    it0 1000
-    it1 20
-    itw 20
-    Partner1: Protein
-    Partner2: Protein
-    clust_meth: FCC
-    clust_cutoff: 0.6
-
-Author: {0} ({1})
+    | $> python haddock_param_summary.py job_params.json
+    | it0 1000
+    | it1 20
+    | itw 20
+    | Partner1: Protein
+    | Partner2: Protein
+    | clust_meth: FCC
+    | clust_cutoff: 0.6
 
 This script is supposed to work with the new parameter files
 used in HADDOCK2.4 (JSON format).

@@ -1,17 +1,15 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 """
 Extract the PDB input files from a job parameter file (JSON)
 in the current directory
 
 usage:
-    $> python haddock_param_summary.py <json file>
+    | $> python haddock_param_summary.py <json file>
 example:
-    $> python haddock_param_summary.py job_params.json
-    partner1.pdb created
-    partner2.pdb created
-
-Author: {0} ({1})
+    | $> python haddock_param_summary.py job_params.json
+    | partner1.pdb created
+    | partner2.pdb created
 
 This script is supposed to work with the new parameter files
 used in HADDOCK2.4 (JSON format).

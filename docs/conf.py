@@ -12,9 +12,10 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../scripts'))
+sys.path.insert(0, os.path.abspath('../json_to_param'))
 
 
 # -- Project information -----------------------------------------------------
@@ -24,9 +25,9 @@ copyright = u'2018, Mikael Trellet'
 author = u'Mikael Trellet'
 
 # The short X.Y version
-version = u''
+version = u'0.1'
 # The full version, including alpha/beta/rc tags
-release = u''
+release = u'0.1alpha'
 
 
 # -- General configuration ---------------------------------------------------

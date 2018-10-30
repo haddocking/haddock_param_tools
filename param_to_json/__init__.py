@@ -7,14 +7,13 @@ parameter files in JSON format.
 Several functions are made available and are based on a common
 structure HADDOCKParam that needs to be initialized prior to
 doing anything.
-
-Author: {0} ({1})
 """
 
 import json
 import logging
 from json import JSONDecodeError
 
+__author__ = 'Mikael Trellet'
 __version__ = '0.1'
 
 logging.basicConfig()
@@ -131,9 +130,9 @@ class HADDOCKParam(object):
         """
         Validation of parameter file format and keys
 
-        :return: if parameter file has a valid format or not
+        :return: True/False
         :rtype: bool
-        :raise: HADDOCKParamFormatError if major format error found
+        :raise: HADDOCKParamFormatError
         """
         # Check that all required keys are present and have proper value type
         # TODO Clean non required keys, by default all are required
