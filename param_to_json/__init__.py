@@ -14,6 +14,7 @@ import logging
 from json import JSONDecodeError
 
 __author__ = 'Mikael Trellet'
+__email__ = "mikael.trellet@gmail.com"
 __version__ = '0.1'
 
 logging.basicConfig()
@@ -89,7 +90,9 @@ class HADDOCKParam(object):
         self.verbose = verbose
         self.path = ""
         self.params = {}
+        self.skip_validation = False
         self.valid = False
+        self.loaded = False
         self.nb_partners = 0
 
     @property
@@ -109,31 +112,44 @@ class HADDOCKParam(object):
 
     @nb_partners.getter
     def nb_partners(self):
-        if not self.params:
-            raise HADDOCKParamError("No parameters found, please load a file")
-        elif "partners" not in self.params:
-            raise HADDOCKParamFormatError("No partners found in parameter set, wrong format")
-        else:
-            return len(self.params["partners"])
+        self.check_status()
+        return len(self.params["partners"])
 
     def _load(self, jsonfh, skip_validation):
         try:
             self.params = json.load(jsonfh)
+            self.skip_validation = skip_validation
             if not skip_validation:
-                self.valid = self.validate()
+                self.valid = self.validate(init=True)
+            self.loaded = True
         except JSONDecodeError as e:
             raise HADDOCKParamFormatError(f"Error while loading JSON file: {e}")
         except HADDOCKParamFormatError:
             raise
 
-    def validate(self):
+    def check_status(self):
+        """Check if a HADDOCKParam is loaded and valid"""
+        if not self.loaded:
+            raise HADDOCKParamError("No parameters found, please load a file")
+        # elif "partners" not in self.params:
+        #     raise HADDOCKParamFormatError("No partners found in parameter set, wrong format")
+        # elif self.skip_validation:
+        #     logging.warning("Parameters file has not been validated yet, errors could occur later on. Use validate()"
+        #                     "function to run a validation step.")
+        elif not self.valid and not self.skip_validation:
+            raise HADDOCKParamFormatError("Parameter file is not valid")
+
+    def validate(self, init=False):
         """
         Validation of parameter file format and keys
 
+        :param: bool init: Indicate if validation occurs upon loading file
         :return: True/False
         :rtype: bool
         :raise: HADDOCKParamFormatError
         """
+        if self.skip_validation:
+            self.skip_validation = False
         # Check that all required keys are present and have proper value type
         # TODO Clean non required keys, by default all are required
         for k, v in self.key_types.items():
@@ -143,7 +159,7 @@ class HADDOCKParam(object):
                 raise HADDOCKParamFormatError(f"Wrong format: {type(self.params[k]).__name__} instead of {v}", param=k)
 
         self.nb_partners = len(self.params['partners'])
-        if self.verbose:
+        if self.verbose and not init:
             if not self.nb_partners:
                 logging.warning("No partner defined")
                 return False
@@ -166,3 +182,29 @@ class HADDOCKParam(object):
         else:
             self._load(input, skip_validation)
 
+    def get(self, param):
+        """Get value of a parameter using its name
+
+        :param param: Name of the parameter
+        """
+        if not self.skip_validation:
+            self.check_status()
+        if param not in self.params:
+            raise HADDOCKParamError(f'Parameter "{param}" not found')
+        else:
+            return self.params.get(param)
+
+    def set(self, param, value):
+        """Get value of a parameter using its name
+
+        :param param: Name of the parameter
+        """
+        if not self.skip_validation:
+            self.check_status()
+        if param not in self.params:
+            raise HADDOCKParamError(f'Parameter "{param}" not found')
+        elif type(value).__name__ != self.key_types[param]:
+            raise HADDOCKParamFormatError(f"Wrong format: {type(value).__name__} instead of {self.key_types[param]}",
+                                          param=param)
+        else:
+            self.params[param] = value
