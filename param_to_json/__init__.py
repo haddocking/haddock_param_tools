@@ -110,9 +110,9 @@ class HADDOCKParam(object):
     @nb_partners.getter
     def nb_partners(self):
         if not self.params:
-            raise HADDOCKParamError("No parameters found, please load a file.")
+            raise HADDOCKParamError("No parameters found, please load a file")
         elif "partners" not in self.params:
-            raise HADDOCKParamFormatError("No partners found in parameter set, wrong format.")
+            raise HADDOCKParamFormatError("No partners found in parameter set, wrong format")
         else:
             return len(self.params["partners"])
 
@@ -165,3 +165,4 @@ class HADDOCKParam(object):
                 self._load(jsonfh, skip_validation)
         else:
             self._load(input, skip_validation)
+

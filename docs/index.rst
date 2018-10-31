@@ -39,7 +39,7 @@ haddock_param_summary.py
 ------------------------
 .. automodule:: haddock_param_summary
 
-haddock_param_summary.py
+haddock_param_extract.py
 ------------------------
 .. automodule:: haddock_param_extract_pdb
 
