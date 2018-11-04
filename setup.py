@@ -1,4 +1,12 @@
 import setuptools
+import os
+import shutil
+
+if not os.path.exists('build/_scripts'):
+    os.makedirs('build/_scripts')
+shutil.copyfile('scripts/haddock_param_extract_pdb.py', 'build/_scripts/hp_extract_pdb')
+shutil.copyfile('scripts/haddock_param_summary.py', 'build/_scripts/hp_summary')
+shutil.copyfile('scripts/haddock_param_replace.py', 'build/_scripts/hp_replace')
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -14,6 +22,7 @@ setuptools.setup(
     url="https://github.com/mtrellet/haddock_param_tools",
     packages=setuptools.find_packages(),
     test_suite='nose.collector',
+    scripts=['build/_scripts/hp_extract_pdb', 'build/_scripts/hp_summary', 'build/_scripts/hp_summary'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache License",
