@@ -85,27 +85,27 @@ def cast_args(arg_param, arg_value):
     if key_types[arg_param] == 'str':
         return arg_value
     elif key_types[arg_param] == 'int':
-        if not re.match('\-?(?<![\d.])[0-9]+(?![\d.])', arg_value):
+        if not re.match(r'-?(?<![\d.])[0-9]+(?![\d.])', arg_value):
             sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
                              f"Check type.\n")
             sys.exit(1)
         else:
             return int(arg_value)
     elif key_types[arg_param] == 'float':
-        if not re.match('\-?[0-9]+\.[0-9]+', arg_value):
+        if not re.match(r'-?[0-9]+\.[0-9]+', arg_value):
             sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
                              f"Check type.\n")
             sys.exit(1)
         else:
             return float(arg_value)
     elif key_types[arg_param] == 'bool':
-        if not re.match('[tT]rue|[Ff]alse|0|1', arg_value):
+        if not re.match(r'[tT]rue|[Ff]alse|0|1', arg_value):
             sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
                              f"Check type.\n")
             sys.exit(1)
-        elif re.match('[Tt]rue|1', arg_value):
+        elif re.match(r'[Tt]rue|1', arg_value):
             return True
-        elif re.match('[Ff]alse|0', arg_value):
+        elif re.match(r'[Ff]alse|0', arg_value):
             return False
         else:
             sys.stderr.write(f"ERROR: Processing of boolean value failed.\n")
