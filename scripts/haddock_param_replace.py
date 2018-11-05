@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
 """
-Replace a parameter in a HADDOCK parameter file (JSON), returns the full parameter file with the modified parameter
+Replace a parameter in a HADDOCK parameter file (JSON), returns the full parameter file with the modified parameter.
+Parameter must be int, float, string or boolean
 
 usage:
     | $> python haddock_param_replace.py <param_name> <param_new_value> <json file>
@@ -20,6 +21,7 @@ used in HADDOCK2.4 (JSON format).
 import os
 import json
 import sys
+import re
 
 __author__ = "Mikael Trellet"
 __email__ = "mikael.trellet@gmail.com"
@@ -65,6 +67,51 @@ key_types = {'amb_cool1': 'int', 'amb_cool2': 'int', 'amb_cool3': 'int', 'amb_fi
              'zres_on': 'bool', 'zresmax': 'float', 'zresmin': 'float'}
 
 
+def cast_args(arg_param, arg_value):
+    """
+    Check whether the param exists and value has a proper type
+    :param str arg_param: parameter to be replaced
+    :param str arg_value: new parameter value to be assigned
+    :return value: new value with parameter type
+    :rtype value: int, float, str, bool
+    """
+    if arg_param not in key_types:
+        sys.stderr.write(f"ERROR: Parameter {arg_param} not found.\n")
+        sys.exit(1)
+    if key_types[arg_param] in ('list', 'dict'):
+        sys.stderr.write(f"ERROR: For parameters of types list and dict, please consider using param_to_json API.\n"
+                         f"Aborting\n")
+        sys.exit(1)
+    if key_types[arg_param] == 'str':
+        return arg_value
+    elif key_types[arg_param] == 'int':
+        if not re.match('\-?(?<![\d.])[0-9]+(?![\d.])', arg_value):
+            sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
+                             f"Check type.\n")
+            sys.exit(1)
+        else:
+            return int(arg_value)
+    elif key_types[arg_param] == 'float':
+        if not re.match('\-?[0-9]+\.[0-9]+', arg_value):
+            sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
+                             f"Check type.\n")
+            sys.exit(1)
+        else:
+            return float(arg_value)
+    elif key_types[arg_param] == 'bool':
+        if not re.match('[tT]rue|[Ff]alse|0|1', arg_value):
+            sys.stderr.write(f"ERROR: Wrong value {arg_value} for parameter {arg_param} ({key_types[arg_param]}).\n"
+                             f"Check type.\n")
+            sys.exit(1)
+        elif re.match('[Tt]rue|1', arg_value):
+            return True
+        elif re.match('[Ff]alse|0', arg_value):
+            return False
+        else:
+            sys.stderr.write(f"ERROR: Processing of boolean value failed.\n")
+            sys.exit(1)
+
+
 def check_input(args):
     """
     Checks whether to read from stdin/file and validates user input/options.
@@ -80,9 +127,8 @@ def check_input(args):
         # Pipe?
         if not sys.stdin.isatty():
             jsonfh = sys.stdin
+            value = cast_args(args[0], args[1])
             param = args[0]
-            value = args[1]
-
         else:
             sys.stderr.write(USAGE)
             sys.exit(1)
@@ -93,8 +139,8 @@ def check_input(args):
             sys.stderr.write(USAGE)
             sys.exit(1)
         jsonfh = open(args[2], 'r')
+        value = cast_args(args[0], args[1])
         param = args[0]
-        value = args[1]
     else:
         sys.stderr.write(USAGE)
         sys.exit(1)

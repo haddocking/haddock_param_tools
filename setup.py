@@ -22,7 +22,7 @@ setuptools.setup(
     url="https://github.com/mtrellet/haddock_param_tools",
     packages=setuptools.find_packages(),
     test_suite='nose.collector',
-    scripts=['build/_scripts/hp_extract_pdb', 'build/_scripts/hp_summary', 'build/_scripts/hp_summary'],
+    scripts=['build/_scripts/hp_extract_pdb', 'build/_scripts/hp_summary', 'build/_scripts/hp_replace'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: Apache License",
