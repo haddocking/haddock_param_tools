@@ -166,6 +166,9 @@ class HADDOCKParam(object):
             elif self.nb_partners < 2:
                 logging.warning("Only one partner defined")
                 return False
+            elif self.nb_partners >20:
+                logging.warning("More than 20 partners defined, HADDOCK currently supports up to 20 partners")
+                return False
         return True
 
     def load(self, input, skip_validation=False):

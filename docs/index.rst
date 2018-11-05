@@ -41,6 +41,9 @@ Scripts
 - **haddock_param_extract_pdb.py**
 .. automodule:: haddock_param_extract_pdb
 
+- **haddock_param_validate.py**
+.. automodule:: haddock_param_validate
+
 - **haddock_param_replace.py**
 .. automodule:: haddock_param_replace
 
