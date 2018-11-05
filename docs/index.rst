@@ -35,14 +35,14 @@ API Reference
 Scripts
 =======
 
-haddock_param_summary.py
-------------------------
+- **haddock_param_summary.py**
 .. automodule:: haddock_param_summary
 
-haddock_param_extract.py
-------------------------
+- **haddock_param_extract_pdb.py**
 .. automodule:: haddock_param_extract_pdb
 
+- **haddock_param_replace.py**
+.. automodule:: haddock_param_replace
 
 
 Indices and tables
