@@ -32,11 +32,11 @@ class Tests(unittest.TestCase):
         """Test HADDOCKParam set function with wrong parameter format"""
         p = param_to_json.HADDOCKParam()
         p.load("test/input/prot-prot-em.json")
-        self.assertRaises(param_to_json.HADDOCKParamFormatError, p.set, "amb_cool1", 10.1)
+        self.assertRaises(param_to_json.HADDOCKParamFormatError, p.set, "amb_cool1", 20)
 
     def test_set_param(self):
         """Test HADDOCKParam set function"""
         p = param_to_json.HADDOCKParam()
         p.load("test/input/prot-prot-em.json")
-        p.set("amb_cool1", 20)
-        self.assertEqual(p.get("amb_cool1"), 20)
+        p.set("amb_cool1", 20.0)
+        self.assertEqual(p.get("amb_cool1"), 20.0)
