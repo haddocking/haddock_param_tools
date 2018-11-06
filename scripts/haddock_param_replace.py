@@ -46,7 +46,7 @@ key_types = {'amb_cool1': 'int', 'amb_cool2': 'int', 'amb_cool3': 'int', 'amb_fi
              'init_cool2': 'float', 'init_cool3': 'float', 'init_rigid': 'float', 'initiosteps': 'int',
              'inter_mat': 'list', 'inter_rigid': 'float', 'kcont': 'float', 'keepwater': 'bool', 'kncs': 'float',
              'krg_cool1': 'int', 'krg_cool2': 'int', 'krg_cool3': 'int', 'krg_hot': 'int', 'ksurf': 'float',
-             'ksym': 'float', 'kzres': 'float', 'n': 'int', 'nb_mol_max': 'int', 'ncs': 'list', 'ncs_on': 'bool',
+             'ksym': 'float', 'kzres': 'float', 'ncs': 'list', 'ncs_on': 'bool',
              'ncvpart': 'float', 'noecv': 'bool', 'ntrials': 'int', 'numc2sym': 'int', 'numc3sym': 'int',
              'numc4sym': 'int', 'numc5sym': 'int', 'numncs': 'int', 'nums3sym': 'int', 'numzres': 'int',
              'par_nonbonded': 'str', 'partners': 'dict', 'pcs': 'list', 'queues': 'list', 'ranair': 'bool',

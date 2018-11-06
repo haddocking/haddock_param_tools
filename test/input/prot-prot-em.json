@@ -538,8 +538,6 @@
     "ksurf": 1.0,
     "ksym": 10.0,
     "kzres": 10.0,
-    "n": 2,
-    "nb_mol_max": 20,
     "ncs": [],
     "ncs_on": false,
     "ncvpart": 2.0,
