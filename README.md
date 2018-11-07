@@ -32,12 +32,32 @@ clust_meth: FCC
 clust_cutoff: 0.6
 ```
 
+## Validate a parameter file
+
+```bash
+$> python haddock_param_validate.py job_params.json
+WARNING: No partner detected
+ERROR: Wrong type for parameter 'amb_cool2'
+...
+```
+
 ## Get input PDB files
 
 ```bash
 $> python haddock_param_extract_pdb.py job_params.json
 partner1.pdb created
 partner2.pdb created
+```
+
+## Replace a parameter
+
+```bash
+$> python haddock_param_replace.py amb_cool1 20 job_params.json
+{
+ 'amb_cool1': 20,
+ 'amb_cool2': 50,
+ ...
+}
 ```
 
 # API
