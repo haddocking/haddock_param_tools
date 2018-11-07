@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/mtrellet/haddock_param_tools.svg?branch=master)](https://travis-ci.com/mtrellet/haddock_param_tools)
+[![Build status](https://ci.appveyor.com/api/projects/status/fol5butsr9nd236x?svg=true)](https://ci.appveyor.com/project/mtrellet/haddock-param-tools)
 [![codecov](https://codecov.io/gh/mtrellet/haddock_param_tools/branch/master/graph/badge.svg)](https://codecov.io/gh/mtrellet/haddock_param_tools)
 [![Documentation Status](https://readthedocs.org/projects/haddock-param-tools/badge/?version=latest)](https://haddock-param-tools.readthedocs.io/en/latest/?badge=latest)
 

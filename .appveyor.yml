@@ -1,0 +1,21 @@
+environment:
+  matrix:
+    - PYTHON: "C:\\Python36"
+
+install:
+  - "SET PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - "python.exe -m pip install codecov coverage nose pycodestyle"
+  - python.exe setup.py build
+
+build: off
+
+test_script:
+  - "coverage run scripts/haddock_param_summary.py test/input/prot-prot-em.json"
+  - "coverage run -a scripts/haddock_param_extract_pdb.py test/input/prot-prot-em.json"
+  - "coverage run -a scripts/haddock_param_replace.py amb_cool2 100.0 test/input/prot-prot-em.json"
+  - "coverage run -a scripts/haddock_param_validate.py test/input/prot-prot-em.json"
+  - "nosetests --with-coverage"
+  - "pycodestyle --ignore=E402,E501 ."
+
+on_success:
+  - "codecov"
